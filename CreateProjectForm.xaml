@@ -1,0 +1,18 @@
+﻿<Window x:Class="_537_FSCF.CreateProjectForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_537_FSCF"
+        mc:Ignorable="d"
+        Title="项目名输入" Height="150" Width="300" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="请输入项目名:" Margin="10"/>
+            <TextBox x:Name="ProjectNameTextBox" Margin="10"/>
+            <Button Content="确定" Margin="10" Click="OkButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
