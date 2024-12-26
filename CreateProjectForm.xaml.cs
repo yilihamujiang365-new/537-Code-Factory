@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace _537_FSCF
+namespace _537_Code_Factory_New
 {
     /// <summary>
     /// CreateProjectForm.xaml 的交互逻辑

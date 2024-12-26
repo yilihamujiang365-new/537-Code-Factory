@@ -1,62 +1,84 @@
-﻿<Window x:Class="_537_FSCF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:_537_FSCF"       
-        xmlns:webview2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-         mc:Ignorable="d"
-         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-           Title="537 Code Factory新版" Height="477" Width="764"          
-             WindowStartupLocation="CenterScreen" >
- 
+﻿<Window
+    x:Class="_537_Code_Factory_New.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:_537_Code_Factory_New"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:webview2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+    Title="537 Code Factory新版"
+    Width="764"
+    Height="477"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
     <DockPanel LastChildFill="True">
-        <!-- 菜单栏，停靠在顶部 -->
+        <!--  菜单栏，停靠在顶部  -->
         <Menu DockPanel.Dock="Top">
-            <!-- 文件菜单 -->
+            <!--  文件菜单  -->
             <MenuItem Header="文件">
-                <MenuItem Header="打开" Click="OpenProject_Click"/>
-                <MenuItem Header="新建" Click="CreateProject_Click"/>
-                <MenuItem Header="关闭"/>
+                <MenuItem Click="OpenProject_Click" Header="打开" />
+                <MenuItem Click="CreateProject_Click" Header="新建" />
+                <MenuItem Click="ExitButton_Click" Header="关闭" />
             </MenuItem>
 
-            <!-- 帮助-->
+            <!--  帮助  -->
             <MenuItem Header="帮助">
-                <MenuItem Header="关于" Click="AboutButton_Click"/>
+                <MenuItem Click="AboutButton_Click" Header="关于" />
             </MenuItem>
 
 
         </Menu>
 
-        <!-- 左侧的 TreeView -->
-        <TreeView DockPanel.Dock="Left" Width="200" x:Name="ProjecttreeView" MouseDoubleClick="ProjecttreeView_MouseDoubleClick"/>
-        <!-- TreeView 内容 -->
+        <!--  左侧的 TreeView  -->
+        <TreeView
+            x:Name="ProjecttreeView"
+            Width="250"
+            DockPanel.Dock="Left"
+            MouseDoubleClick="ProjecttreeView_MouseDoubleClick" />
 
-
-        <!-- 右侧的布局容器 -->
+        <!--  右侧的布局容器  -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- 第一个 TabControl -->
-            <TabControl Grid.Column="0" x:Name="tabControl1">
+            <!--  第一个 TabControl  -->
+            <TabControl x:Name="tabControl1" Grid.Column="0">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="TabItem">
                                     <Grid>
-                                        <Border Name="Border" BorderBrush="Black" BorderThickness="1" Background="White">
+                                        <Border
+                                            Name="Border"
+                                            Background="White"
+                                            BorderBrush="Black"
+                                            BorderThickness="1">
                                             <StackPanel Orientation="Horizontal">
-                                                <ContentPresenter ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                                <Button HorizontalAlignment="Right" Width="16" Height="16" Margin="2" Click="CloseTabButton_Click">
+                                                <ContentPresenter
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    ContentSource="Header" />
+                                                <Button
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Right"
+                                                    Click="CloseTabButton_Click">
                                                     <Button.Template>
                                                         <ControlTemplate>
                                                             <Border Background="Red">
-                                                                <TextBlock Text="×" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                <TextBlock
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"
+                                                                    FontWeight="Bold"
+                                                                    Foreground="White"
+                                                                    Text="×" />
                                                             </Border>
                                                         </ControlTemplate>
                                                     </Button.Template>
@@ -66,7 +88,7 @@
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Background" Value="LightGray"/>
+                                            <Setter TargetName="Border" Property="Background" Value="LightGray" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -76,19 +98,21 @@
                 </TabControl.ItemContainerStyle>
             </TabControl>
 
-            <!-- GridSplitter 用于调整两个 TabControl 之间的空间 -->
-            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Background="#FFE41818"/>
+            <!--  GridSplitter 用于调整两个 TabControl 之间的空间  -->
+            <GridSplitter
+                Grid.Column="1"
+                Width="3"
+                HorizontalAlignment="Stretch"
+                Background="#FFE41818" />
 
-            <!-- 第二个 TabControl -->
+            <!--  第二个 TabControl  -->
             <TabControl Grid.Column="2">
                 <TabItem Header="Edge Webview2">
-                    <webview2:WebView2 x:Name="webView21">
-
-                    </webview2:WebView2>
+                    <webview2:WebView2 x:Name="webView21" />
                 </TabItem>
 
                 <TabItem Header="Internet Explorer">
-                    <WebBrowser x:Name="IEbrower"/>
+                    <WebBrowser x:Name="IEbrower" />
                 </TabItem>
             </TabControl>
         </Grid>
